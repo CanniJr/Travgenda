@@ -1,3 +1,17 @@
+# Travgenda
+
+This project is made to ease our family's annual need to travel to United States due to immigration status and as a travel companion app for searching flights, destination places and restrictions. Libraries used will be updated as the project progresses.
+
+Libraries:
+
+- Material UI
+
+API:
+
+- Amadeus API
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
