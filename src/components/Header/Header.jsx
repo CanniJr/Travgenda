@@ -1,6 +1,7 @@
 import React from "react";
 // import { Autocomplete } from '@react-google-maps/api'
 import { AppBar, Toolbar, Typography, InputBase, Box } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 
 const Header = () => {
   return (
@@ -13,6 +14,13 @@ const Header = () => {
           <Typography variant="h6" className={classes.title}>
             Options
           </Typography>
+          <Autocomplete>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+            </div>
+          </Autocomplete>
         </Box>
       </Toolbar>
     </AppBar>
