@@ -19,7 +19,7 @@ const pinSchema = new mongoose.Schema(
       type: Number,
       required: true,
       min: 0,
-      ax: 5,
+      max: 5,
     },
     lat: {
       type: Number,
