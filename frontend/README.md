@@ -1,3 +1,7 @@
+# This is the Front-End for Travgenda
+
+    More updates on the app coming soon.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
