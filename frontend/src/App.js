@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
+import RoomIcon from "@mui/icons-material/Room";
 
 function App() {
   const [viewport, setViewport] = useState({
@@ -23,7 +24,7 @@ function App() {
           offsetLeft={-20}
           offsetTop={-10}
         >
-          <div>test</div>
+          <RoomIcon />
         </Marker>
       </ReactMapGL>
     </div>
