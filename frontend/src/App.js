@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 import RoomIcon from "@mui/icons-material/Room";
+import "./App.css";
 
 function App() {
   const [viewport, setViewport] = useState({
