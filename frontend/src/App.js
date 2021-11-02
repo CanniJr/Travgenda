@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
-import RoomIcon from "@mui/icons-material/Room";
+import PlaceIcon from "@mui/icons-material/Place";
 import "./App.css";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
           offsetLeft={-20}
           offsetTop={-10}
         >
-          <RoomIcon />
+          <PlaceIcon style={{ fontSize: viewport.zoom * 5, color: "blue" }} />
         </Marker>
       </ReactMapGL>
     </div>
