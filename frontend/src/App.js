@@ -1,6 +1,7 @@
 import { useState } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import PlaceIcon from "@mui/icons-material/Place";
+import Star from "@mui/icons-material/Star";
 import "./App.css";
 
 function App() {
@@ -28,6 +29,32 @@ function App() {
         >
           <PlaceIcon style={{ fontSize: viewport.zoom * 5, color: "blue" }} />
         </Marker>
+        <Popup
+          latitude={40.782864}
+          longitude={-73.965355}
+          closeButton={true}
+          closeOnClick={false}
+          anchor="left"
+        >
+          <div className="card">
+            <label>Place</label>
+            <h4>Central Park</h4>
+            <label>Review</label>
+            <p>Nice Park</p>
+            <label>Rating</label>
+            <div className="card__ratings">
+              <Star />
+              <Star />
+              <Star />
+              <Star />
+              <Star />
+            </div>
+            <label>Description</label>
+            <span className="card__username">
+              Created by <b>Canni</b>
+            </span>
+          </div>
+        </Popup>
       </ReactMapGL>
     </div>
   );
