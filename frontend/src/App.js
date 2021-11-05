@@ -38,9 +38,9 @@ function App() {
         >
           <div className="card">
             <label>Place</label>
-            <h4>Central Park</h4>
+            <h4 className="card__place">Central Park</h4>
             <label>Review</label>
-            <p>Nice Park</p>
+            <p className="card__review">Nice Park</p>
             <label>Rating</label>
             <div className="card__ratings">
               <Star />

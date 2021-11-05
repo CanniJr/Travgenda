@@ -13,3 +13,11 @@
   margin: 5px 0;
   width: fit-content;
 }
+
+.card__review {
+  font-size: 14px;
+}
+
+.card__ratings {
+  color: gold;
+}
