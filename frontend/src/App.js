@@ -23,6 +23,7 @@ function App() {
         mapStyle="mapbox://styles/kanigeeuh/ckvib9vgs0qhc14o5k4kdz6hx"
       >
         <Marker
+          onClick={() => togglePopup((prevState) => !prevState)}
           latitude={40.782864}
           longitude={-73.965355}
           offsetLeft={-20}
