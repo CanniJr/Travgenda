@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import PlaceIcon from "@mui/icons-material/Place";
 import Star from "@mui/icons-material/Star";
+import axios from "axios";
 import "./App.css";
 
 function App() {
   const [showPopup, togglePopup] = useState(true);
+  const [pins, setPins] = useState([]);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -13,6 +15,17 @@ function App() {
     longitude: -73.935242, //Default city = NYC
     zoom: 11,
   });
+
+  useEffect(() => {
+    const getPins = async () => {
+      try {
+        const res = await axios.get("/pins");
+        setPins(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
 
   return (
     <div className="app">
