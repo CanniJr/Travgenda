@@ -25,6 +25,7 @@ function App() {
         console.log(error);
       }
     };
+    getPins();
   }, []);
 
   return (
@@ -35,45 +36,51 @@ function App() {
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         mapStyle="mapbox://styles/kanigeeuh/ckvib9vgs0qhc14o5k4kdz6hx"
       >
-        <Marker
-          onClick={() => togglePopup((prevState) => !prevState)}
-          latitude={40.782864}
-          longitude={-73.965355}
-          offsetLeft={-20}
-          offsetTop={-10}
-        >
-          <PlaceIcon style={{ fontSize: viewport.zoom * 5, color: "blue" }} />
-        </Marker>
-        {showPopup && (
-          <Popup
-            latitude={40.782864}
-            longitude={-73.965355}
-            closeButton={true}
-            closeOnClick={false}
-            onClose={() => togglePopup(false)}
-            anchor="left"
-            onC
-          >
-            <div className="card">
-              <label>Place</label>
-              <h4 className="card__place">Central Park</h4>
-              <label>Review</label>
-              <p className="card__review">Nice Park</p>
-              <label>Rating</label>
-              <div className="card__ratings">
-                <Star />
-                <Star />
-                <Star />
-                <Star />
-                <Star />
-              </div>
-              <label>Description</label>
-              <span className="card__username">
-                Created by <b>Canni</b>
-              </span>
-            </div>
-          </Popup>
-        )}
+        {pins.map((pin) => (
+          <>
+            <Marker
+              onClick={() => togglePopup((prevState) => !prevState)}
+              latitude={40.782864}
+              longitude={-73.965355}
+              offsetLeft={-20}
+              offsetTop={-10}
+            >
+              <PlaceIcon
+                style={{ fontSize: viewport.zoom * 5, color: "blue" }}
+              />
+            </Marker>
+            {showPopup && (
+              <Popup
+                latitude={40.782864}
+                longitude={-73.965355}
+                closeButton={true}
+                closeOnClick={false}
+                onClose={() => togglePopup(false)}
+                anchor="left"
+                onC
+              >
+                <div className="card">
+                  <label>Place</label>
+                  <h4 className="card__place">Central Park</h4>
+                  <label>Review</label>
+                  <p className="card__review">Nice Park</p>
+                  <label>Rating</label>
+                  <div className="card__ratings">
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                  </div>
+                  <label>Description</label>
+                  <span className="card__username">
+                    Created by <b>Canni</b>
+                  </span>
+                </div>
+              </Popup>
+            )}
+          </>
+        ))}
       </ReactMapGL>
     </div>
   );
