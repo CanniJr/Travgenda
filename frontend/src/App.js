@@ -28,6 +28,8 @@ function App() {
     getPins();
   }, []);
 
+  const ratingArray = Array.from(new Array(Math.floor(rating)));
+
   return (
     <div className="app">
       <ReactMapGL
@@ -38,10 +40,11 @@ function App() {
       >
         {pins.map((pin) => (
           <>
+            {console.log(pin)}
             <Marker
               onClick={() => togglePopup((prevState) => !prevState)}
-              latitude={40.782864}
-              longitude={-73.965355}
+              latitude={pin.lat}
+              longitude={pin.long}
               offsetLeft={-20}
               offsetTop={-10}
             >
@@ -51,13 +54,12 @@ function App() {
             </Marker>
             {showPopup && (
               <Popup
-                latitude={40.782864}
-                longitude={-73.965355}
+                latitude={pin.lat}
+                longitude={pin.long}
                 closeButton={true}
                 closeOnClick={false}
                 onClose={() => togglePopup(false)}
                 anchor="left"
-                onC
               >
                 <div className="card">
                   <label>Place</label>
@@ -66,6 +68,7 @@ function App() {
                   <p className="card__review">Nice Park</p>
                   <label>Rating</label>
                   <div className="card__ratings">
+                    {}
                     <Star />
                     <Star />
                     <Star />
@@ -74,7 +77,7 @@ function App() {
                   </div>
                   <label>Description</label>
                   <span className="card__username">
-                    Created by <b>Canni</b>
+                    Created by <b>{pin.username}</b>
                   </span>
                 </div>
               </Popup>
