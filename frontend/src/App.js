@@ -28,7 +28,7 @@ function App() {
     getPins();
   }, []);
 
-  const ratingArray = Array.from(new Array(Math.floor(rating)));
+  // const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
     <div className="app">
@@ -40,7 +40,6 @@ function App() {
       >
         {pins.map((pin) => (
           <>
-            {console.log(pin)}
             <Marker
               onClick={() => togglePopup((prevState) => !prevState)}
               latitude={pin.lat}
@@ -63,9 +62,9 @@ function App() {
               >
                 <div className="card">
                   <label>Place</label>
-                  <h4 className="card__place">Central Park</h4>
+                  <h4 className="card__place">{pin.title}</h4>
                   <label>Review</label>
-                  <p className="card__review">Nice Park</p>
+                  <p className="card__review">{pin.description}</p>
                   <label>Rating</label>
                   <div className="card__ratings">
                     {}
