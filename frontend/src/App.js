@@ -3,11 +3,12 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import PlaceIcon from "@mui/icons-material/Place";
 import Star from "@mui/icons-material/Star";
 import axios from "axios";
+import * as timeago from "timeago.js";
 import "./App.css";
 
 function App() {
-  const [showPopup, togglePopup] = useState(true);
   const [pins, setPins] = useState([]);
+  const [markerID, setMarkerID] = useState(null);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -28,6 +29,10 @@ function App() {
     getPins();
   }, []);
 
+  const markerClickHandler = (id) => {
+    setMarkerID(id);
+  };
+
   // const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
@@ -41,23 +46,23 @@ function App() {
         {pins.map((pin) => (
           <>
             <Marker
-              onClick={() => togglePopup((prevState) => !prevState)}
               latitude={pin.lat}
               longitude={pin.long}
               offsetLeft={-20}
               offsetTop={-10}
             >
               <PlaceIcon
-                style={{ fontSize: viewport.zoom * 5, color: "blue" }}
+                style={{ fontSize: viewport.zoom * 3, color: "blue" }}
+                onClick={() => markerClickHandler(pin._id)}
               />
             </Marker>
-            {showPopup && (
+            {pin._id === markerID && (
               <Popup
                 latitude={pin.lat}
                 longitude={pin.long}
                 closeButton={true}
                 closeOnClick={false}
-                onClose={() => togglePopup(false)}
+                onClose={() => setMarkerID(null)}
                 anchor="left"
               >
                 <div className="card">
@@ -67,17 +72,22 @@ function App() {
                   <p className="card__review">{pin.description}</p>
                   <label>Rating</label>
                   <div className="card__ratings">
-                    {}
+                    {Array.from(new Array(Math.floor(pin.rating))).map(
+                      (star) => (
+                        <Star />
+                      )
+                    )}
+                    {/* <Star />
                     <Star />
                     <Star />
                     <Star />
-                    <Star />
-                    <Star />
+                    <Star /> */}
                   </div>
                   <label>Description</label>
                   <span className="card__username">
                     Created by <b>{pin.username}</b>
                   </span>
+                  <span>{timeago.format(pin.createdAt)}</span>
                 </div>
               </Popup>
             )}
