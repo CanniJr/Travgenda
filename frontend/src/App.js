@@ -7,6 +7,7 @@ import * as timeago from "timeago.js";
 import "./App.css";
 
 function App() {
+  const currentUser = "Akira";
   const [pins, setPins] = useState([]);
   const [markerID, setMarkerID] = useState(null);
   const [viewport, setViewport] = useState({
@@ -52,7 +53,11 @@ function App() {
               offsetTop={-10}
             >
               <PlaceIcon
-                style={{ fontSize: viewport.zoom * 3, color: "blue" }}
+                style={{
+                  fontSize: viewport.zoom * 3,
+                  color: pin.username === currentUser ? "blue" : "red",
+                  cursor: "pointer",
+                }}
                 onClick={() => markerClickHandler(pin._id)}
               />
             </Marker>
