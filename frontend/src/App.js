@@ -10,6 +10,7 @@ function App() {
   const currentUser = "Akira";
   const [pins, setPins] = useState([]);
   const [markerID, setMarkerID] = useState(null);
+  const [newMarker, setNewMarker] = useState(null);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -34,6 +35,14 @@ function App() {
     setMarkerID(id);
   };
 
+  const handleAddMarker = (e) => {
+    console.log(e);
+    const [long, lat] = e.lngLat;
+    setNewMarker({
+      lat,
+      long,
+    });
+  };
   // const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
@@ -43,6 +52,7 @@ function App() {
         {...viewport}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         mapStyle="mapbox://styles/kanigeeuh/ckvib9vgs0qhc14o5k4kdz6hx"
+        onDblClick={handleAddMarker}
       >
         {pins.map((pin) => (
           <>
@@ -98,6 +108,18 @@ function App() {
             )}
           </>
         ))}
+        {newMarker && (
+          <Popup
+            latitude={newMarker.lat}
+            longitude={newMarker.long}
+            closeButton={true}
+            closeOnClick={false}
+            onClose={() => setMarkerID(null)}
+            anchor="left"
+          >
+            Hey!!
+          </Popup>
+        )}
       </ReactMapGL>
     </div>
   );
