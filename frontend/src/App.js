@@ -31,8 +31,9 @@ function App() {
     getPins();
   }, []);
 
-  const markerClickHandler = (id) => {
+  const markerClickHandler = (id, lat, long) => {
     setMarkerID(id);
+    setViewport({ ...viewport, latitude: lat, longitude: long });
   };
 
   const handleAddMarker = (e) => {
@@ -53,6 +54,7 @@ function App() {
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         mapStyle="mapbox://styles/kanigeeuh/ckvib9vgs0qhc14o5k4kdz6hx"
         onDblClick={handleAddMarker}
+        transitionDuration="200"
       >
         {pins.map((pin) => (
           <>
@@ -68,7 +70,7 @@ function App() {
                   color: pin.username === currentUser ? "blue" : "red",
                   cursor: "pointer",
                 }}
-                onClick={() => markerClickHandler(pin._id)}
+                onClick={() => markerClickHandler(pin._id, pin.lat, pin.long)}
               />
             </Marker>
             {pin._id === markerID && (
