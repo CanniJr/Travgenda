@@ -114,7 +114,7 @@ function App() {
             longitude={newMarker.long}
             closeButton={true}
             closeOnClick={false}
-            onClose={() => setMarkerID(null)}
+            onClose={() => setNewMarker(null)}
             anchor="left"
           >
             Hey!!
