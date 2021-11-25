@@ -54,7 +54,7 @@ function App() {
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         mapStyle="mapbox://styles/kanigeeuh/ckvib9vgs0qhc14o5k4kdz6hx"
         onDblClick={handleAddMarker}
-        transitionDuration="200"
+        transitionDuration="150"
       >
         {pins.map((pin) => (
           <>
@@ -119,7 +119,25 @@ function App() {
             onClose={() => setNewMarker(null)}
             anchor="left"
           >
-            Hey!!
+            <div>
+              <form>
+                <label>Title</label>
+                <input placeholer="Title" />
+                <label>Description</label>
+                <textarea placeholder="Give us a description of this place." />
+                <label>Rating</label>
+                <select>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <button className="newPin__Button" type="submit">
+                  Add Pin
+                </button>
+              </form>
+            </div>
           </Popup>
         )}
       </ReactMapGL>
