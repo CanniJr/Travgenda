@@ -11,6 +11,9 @@ function App() {
   const [pins, setPins] = useState([]);
   const [markerID, setMarkerID] = useState(null);
   const [newMarker, setNewMarker] = useState(null);
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [rating, setRating] = useState(0);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -67,7 +70,7 @@ function App() {
               <PlaceIcon
                 style={{
                   fontSize: viewport.zoom * 3,
-                  color: pin.username === currentUser ? "blue" : "red",
+                  color: pin.username === currentUser ? "red" : "gray",
                   cursor: "pointer",
                 }}
                 onClick={() => markerClickHandler(pin._id, pin.lat, pin.long)}
@@ -83,9 +86,9 @@ function App() {
                 anchor="left"
               >
                 <div className="card">
-                  <label>Place</label>
+                  <label>Title</label>
                   <h4 className="card__place">{pin.title}</h4>
-                  <label>Review</label>
+                  <label>Description</label>
                   <p className="card__review">{pin.description}</p>
                   <label>Rating</label>
                   <div className="card__ratings">
@@ -122,7 +125,7 @@ function App() {
             <div>
               <form>
                 <label>Title</label>
-                <input placeholer="Title" />
+                <input placeholder="Write a title" />
                 <label>Description</label>
                 <textarea placeholder="Give us a description of this place." />
                 <label>Rating</label>
