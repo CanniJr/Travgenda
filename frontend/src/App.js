@@ -12,7 +12,7 @@ function App() {
   const [markerID, setMarkerID] = useState(null);
   const [newMarker, setNewMarker] = useState(null);
   const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
+  const [description, setDesc] = useState("");
   const [rating, setRating] = useState(0);
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -34,13 +34,32 @@ function App() {
     getPins();
   }, []);
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const newPin = {
+      username: currentUser,
+      title,
+      description,
+      rating,
+      lat: newMarker.lat,
+      long: newMarker.long,
+    };
+
+    try {
+      const res = await axios.post("/pins", newPin);
+      setPins([...pins, res.data]);
+      setNewMarker(null);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const markerClickHandler = (id, lat, long) => {
     setMarkerID(id);
     setViewport({ ...viewport, latitude: lat, longitude: long });
   };
 
   const handleAddMarker = (e) => {
-    console.log(e);
     const [long, lat] = e.lngLat;
     setNewMarker({
       lat,
@@ -123,13 +142,19 @@ function App() {
             anchor="left"
           >
             <div>
-              <form>
+              <form onSubmit={submitHandler}>
                 <label>Title</label>
-                <input placeholder="Write a title" />
+                <input
+                  placeholder="Write a title"
+                  onChange={(e) => setTitle(e.target.value)}
+                />
                 <label>Description</label>
-                <textarea placeholder="Give us a description of this place." />
+                <textarea
+                  onChange={(e) => setDesc(e.target.value)}
+                  placeholder="Give us a description of this place."
+                />
                 <label>Rating</label>
-                <select>
+                <select onChange={(e) => setRating(e.target.value)}>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
