@@ -7,7 +7,7 @@ import * as timeago from "timeago.js";
 import "./App.css";
 
 function App() {
-  const currentUser = "Akira";
+  const currentUser = "Tina";
   const [pins, setPins] = useState([]);
   const [markerID, setMarkerID] = useState(null);
   const [newMarker, setNewMarker] = useState(null);
@@ -83,8 +83,8 @@ function App() {
             <Marker
               latitude={pin.lat}
               longitude={pin.long}
-              offsetLeft={-20}
-              offsetTop={-10}
+              offsetLeft={-viewport.zoom * (3 / 2)}
+              offsetTop={-viewport.zoom * 3}
             >
               <PlaceIcon
                 style={{
@@ -111,16 +111,12 @@ function App() {
                   <p className="card__review">{pin.description}</p>
                   <label>Rating</label>
                   <div className="card__ratings">
-                    {Array.from(new Array(Math.floor(pin.rating))).map(
+                    {/* {Array.from(new Array(Math.floor(pin.rating))).map(
                       (star) => (
                         <Star />
                       )
-                    )}
-                    {/* <Star />
-                    <Star />
-                    <Star />
-                    <Star />
-                    <Star /> */}
+                    )} */}
+                    {Array(pin.rating).fill(<Star className="star" />)}
                   </div>
                   <label>Description</label>
                   <span className="card__username">
@@ -168,6 +164,11 @@ function App() {
             </div>
           </Popup>
         )}
+        <button className="button logout">Log Out</button>
+        <div>
+          <button className="button login">Log In</button>
+          <button className="button register">Register</button>
+        </div>
       </ReactMapGL>
     </div>
   );

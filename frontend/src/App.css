@@ -50,3 +50,22 @@ textarea::placeholder {
   color: white;
   cursor: pointer;
 }
+
+.button {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.logout {
+  background-color: gray;
+}
+
+.login {
+  background-color: teal;
+}
+
+.register {
+  background-color: tomato;
+}
