@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Pin = require("../models/Pin");
 
 //create pin
-router.post("/create", async (req, res) => {
+router.post("/", async (req, res) => {
   const newPin = new Pin(req.body);
   try {
     const savedPin = await newPin.save();
