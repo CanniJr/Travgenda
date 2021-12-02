@@ -4,10 +4,11 @@ import PlaceIcon from "@mui/icons-material/Place";
 import Star from "@mui/icons-material/Star";
 import axios from "axios";
 import * as timeago from "timeago.js";
+import Register from "./components/register/Register";
 import "./App.css";
 
 function App() {
-  const currentUser = "Tina";
+  const [currentUser, setCurrentUser] = useState(null);
   const [pins, setPins] = useState([]);
   const [markerID, setMarkerID] = useState(null);
   const [newMarker, setNewMarker] = useState(null);
@@ -164,11 +165,14 @@ function App() {
             </div>
           </Popup>
         )}
-        <button className="button logout">Log Out</button>
-        <div>
-          <button className="button login">Log In</button>
-          <button className="button register">Register</button>
-        </div>
+        {currentUser ? (
+          <button className="button logout">Log Out</button>
+        ) : (
+          <div className="buttons">
+            <button className="button login">Log In</button>
+          </div>
+        )}
+        <Register />
       </ReactMapGL>
     </div>
   );
