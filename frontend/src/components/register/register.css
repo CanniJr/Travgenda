@@ -22,3 +22,22 @@
   display: flex;
   margin-bottom: 20px;
 }
+
+.register__button {
+  border: none;
+  padding: none;
+  border-radius: 5px;
+  color: white;
+  background-color: slateblue;
+}
+
+.success {
+  color: green;
+  font-size: 12px;
+  text-align: center;
+}
+.fail {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+}

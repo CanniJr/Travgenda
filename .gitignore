@@ -1,4 +1,8 @@
 .env
 
+
 # REST test 
 untitled.http
+
+#dependencies
+node_modules
