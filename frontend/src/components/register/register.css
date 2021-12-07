@@ -16,9 +16,9 @@
   justify-content: space-between;
 }
 
-.logo {
+.logo__register {
   font-weight: 600;
-  color: slateblue;
+  color: tomato;
   display: flex;
   margin-bottom: 20px;
 }
@@ -28,7 +28,7 @@
   padding: none;
   border-radius: 5px;
   color: white;
-  background-color: slateblue;
+  background-color: tomato;
   cursor: pointer;
 }
 

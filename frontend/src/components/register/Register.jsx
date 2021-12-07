@@ -29,7 +29,7 @@ function Register({ setShowRegistration }) {
 
   return (
     <div className="register__container">
-      <div className="logo">
+      <div className="logo__register">
         <Place />
         Travgenda
       </div>

@@ -64,11 +64,15 @@ function App() {
   };
 
   const handleAddMarker = (e) => {
-    const [long, lat] = e.lngLat;
-    setNewMarker({
-      lat,
-      long,
-    });
+    if (currentUser) {
+      const [long, lat] = e.lngLat;
+      setNewMarker({
+        lat,
+        long,
+      });
+    } else {
+      alert("Please Login first!");
+    }
   };
   // const ratingArray = Array.from(new Array(Math.floor(rating)));
 
@@ -80,6 +84,7 @@ function App() {
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         mapStyle="mapbox://styles/kanigeeuh/ckvib9vgs0qhc14o5k4kdz6hx"
         onDblClick={handleAddMarker}
+        doubleClickZoom={false}
         transitionDuration="150"
       >
         {pins.map((pin) => (
@@ -172,12 +177,21 @@ function App() {
           <button className="button logout">Log Out</button>
         ) : (
           <div className="buttons">
-            <button className="button login" onClick={() => setShowLogin(true)}>
+            <button
+              className="button login"
+              onClick={() => {
+                setShowLogin((prevState) => !prevState);
+                setShowRegistration(false);
+              }}
+            >
               Log In
             </button>
             <button
               className="button register"
-              onClick={() => setShowRegistration(true)}
+              onClick={() => {
+                setShowRegistration((prevState) => !prevState);
+                setShowLogin(false);
+              }}
             >
               Register
             </button>
@@ -186,7 +200,7 @@ function App() {
         {showRegistration && (
           <Register setShowRegistration={setShowRegistration} />
         )}
-        {showLogin && <Login />}
+        {showLogin && <Login setShowLogin={setShowLogin} />}
       </ReactMapGL>
     </div>
   );
