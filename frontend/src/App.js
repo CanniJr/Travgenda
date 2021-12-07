@@ -5,6 +5,7 @@ import Star from "@mui/icons-material/Star";
 import axios from "axios";
 import * as timeago from "timeago.js";
 import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
   const [title, setTitle] = useState("");
   const [description, setDesc] = useState("");
   const [rating, setRating] = useState(0);
+  const [showRegistration, setShowRegistration] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -169,10 +172,21 @@ function App() {
           <button className="button logout">Log Out</button>
         ) : (
           <div className="buttons">
-            <button className="button login">Log In</button>
+            <button className="button login" onClick={() => setShowLogin(true)}>
+              Log In
+            </button>
+            <button
+              className="button register"
+              onClick={() => setShowRegistration(true)}
+            >
+              Register
+            </button>
           </div>
         )}
-        <Register />
+        {showRegistration && (
+          <Register setShowRegistration={setShowRegistration} />
+        )}
+        {showLogin && <Login />}
       </ReactMapGL>
     </div>
   );

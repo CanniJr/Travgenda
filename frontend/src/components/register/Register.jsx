@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
 import "./register.css";
-import PlaceIcon from "@mui/icons-material/Place";
+import { Place, Cancel } from "@mui/icons-material";
+// import CancelIcon from '@mui/icons-material/Cancel';
 import axios from "axios";
 
-function Register() {
+function Register({ setShowRegistration }) {
   const [success, setSuccess] = useState(false);
   const [fail, setFail] = useState(false);
   const nameRef = useRef();
@@ -29,7 +30,7 @@ function Register() {
   return (
     <div className="register__container">
       <div className="logo">
-        <PlaceIcon />
+        <Place />
         Travgenda
       </div>
 
@@ -43,9 +44,13 @@ function Register() {
             Welcome to Travgenda! You can now login.
           </span>
         )}
-        {fail && <span className="fail">Please try again!</span>}
+        {fail && <span className="failure">Please try again!</span>}
       </form>
-      {/* Add registration cancelation here! */}
+
+      <Cancel
+        className="register__cancel"
+        onClick={() => setShowRegistration(false)}
+      />
     </div>
   );
 }
