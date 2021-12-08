@@ -3,23 +3,27 @@ import "./login.css";
 import { Place, Cancel } from "@mui/icons-material";
 import axios from "axios";
 
-function Login({ setShowLogin }) {
+function Login({ setShowLogin, setCurrentUser }) {
   const [fail, setFail] = useState(false);
-  const nameRef = useRef();
+  const emailRef = useRef();
   const passRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newUser = {
-      username: nameRef.current.value,
+    const user = {
+      email: emailRef.current.value,
       password: passRef.current.value,
     };
+    console.log(user);
 
     try {
-      await axios.post("/users/login", newUser);
+      const res = await axios.post("/users/login", user);
+      setCurrentUser(res.data.username);
       setFail(false);
+      setShowLogin(false);
     } catch (error) {
       setFail(true);
+      setTimeout(() => setFail(false), 5000);
     }
   };
 
@@ -31,7 +35,7 @@ function Login({ setShowLogin }) {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="username" ref={nameRef} />
+        <input type="email" placeholder="email" ref={emailRef} />
         <input type="password" placeholder="password" ref={passRef} />
         <button className="login__button">Login</button>
 

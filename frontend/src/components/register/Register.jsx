@@ -22,6 +22,7 @@ function Register({ setShowRegistration }) {
     try {
       await axios.post("/users/register", newUser);
       setFail(false);
+      setSuccess(true);
     } catch (error) {
       setFail(true);
     }

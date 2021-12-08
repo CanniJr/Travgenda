@@ -9,6 +9,7 @@ import Login from "./components/login/Login";
 import "./App.css";
 
 function App() {
+  const myStorage = window.localStorage;
   const [currentUser, setCurrentUser] = useState(null);
   const [pins, setPins] = useState([]);
   const [markerID, setMarkerID] = useState(null);
@@ -71,7 +72,7 @@ function App() {
         long,
       });
     } else {
-      alert("Please Login first!");
+      setShowLogin(true);
     }
   };
   // const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -85,7 +86,7 @@ function App() {
         mapStyle="mapbox://styles/kanigeeuh/ckvib9vgs0qhc14o5k4kdz6hx"
         onDblClick={handleAddMarker}
         doubleClickZoom={false}
-        transitionDuration="150"
+        // transitionDuration="150"
       >
         {pins.map((pin) => (
           <>
@@ -145,6 +146,7 @@ function App() {
             closeOnClick={false}
             onClose={() => setNewMarker(null)}
             anchor="left"
+            captureDoubleClick={showRegistration || showLogin ? false : true}
           >
             <div>
               <form onSubmit={submitHandler}>
@@ -200,7 +202,13 @@ function App() {
         {showRegistration && (
           <Register setShowRegistration={setShowRegistration} />
         )}
-        {showLogin && <Login setShowLogin={setShowLogin} />}
+        {showLogin && (
+          <Login
+            myStorage={myStorage}
+            setCurrentUser={setCurrentUser}
+            setShowLogin={setShowLogin}
+          />
+        )}
       </ReactMapGL>
     </div>
   );
