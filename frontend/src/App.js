@@ -10,7 +10,7 @@ import "./App.css";
 
 function App() {
   const myStorage = window.localStorage;
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(myStorage.getItem("username"));
   const [pins, setPins] = useState([]);
   const [markerID, setMarkerID] = useState(null);
   const [newMarker, setNewMarker] = useState(null);
@@ -75,7 +75,11 @@ function App() {
       setShowLogin(true);
     }
   };
-  // const ratingArray = Array.from(new Array(Math.floor(rating)));
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+    myStorage.removeItem("username");
+  };
 
   return (
     <div className="app">
@@ -176,7 +180,9 @@ function App() {
           </Popup>
         )}
         {currentUser ? (
-          <button className="button logout">Log Out</button>
+          <button onClick={handleLogout} className="button logout">
+            Log Out
+          </button>
         ) : (
           <div className="buttons">
             <button

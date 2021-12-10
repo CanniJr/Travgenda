@@ -3,7 +3,7 @@ import "./login.css";
 import { Place, Cancel } from "@mui/icons-material";
 import axios from "axios";
 
-function Login({ setShowLogin, setCurrentUser }) {
+function Login({ setShowLogin, setCurrentUser, myStorage }) {
   const [fail, setFail] = useState(false);
   const emailRef = useRef();
   const passRef = useRef();
@@ -14,11 +14,12 @@ function Login({ setShowLogin, setCurrentUser }) {
       email: emailRef.current.value,
       password: passRef.current.value,
     };
-    console.log(user);
 
     try {
       const res = await axios.post("/users/login", user);
-      setCurrentUser(res.data.username);
+      myStorage.setItem("username", res.data.username);
+      setCurrentUser(myStorage.getItem("username"));
+
       setFail(false);
       setShowLogin(false);
     } catch (error) {
@@ -26,6 +27,7 @@ function Login({ setShowLogin, setCurrentUser }) {
       setTimeout(() => setFail(false), 5000);
     }
   };
+  //   console.log(myStorage.getItem("username"));
 
   return (
     <div className="login__container">
