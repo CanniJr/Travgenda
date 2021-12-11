@@ -19,6 +19,6 @@ mongoose
 app.use("/pins", pinRoute);
 app.use("/users", userRoute);
 
-app.listen(8800, () => {
-  console.log("Server running on 8800...");
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`Server running on ${process.env.PORT}...`);
 });
