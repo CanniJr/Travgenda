@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./login.css";
 import { Place, Cancel } from "@mui/icons-material";
-import axios from "axios";
+import { axiosInstance } from "./config";
 
 function Login({ setShowLogin, setCurrentUser, myStorage }) {
   const [fail, setFail] = useState(false);
@@ -16,7 +16,7 @@ function Login({ setShowLogin, setCurrentUser, myStorage }) {
     };
 
     try {
-      const res = await axios.post("/users/login", user);
+      const res = await axiosInstance.post("/users/login", user);
       myStorage.setItem("username", res.data.username);
       setCurrentUser(myStorage.getItem("username"));
 

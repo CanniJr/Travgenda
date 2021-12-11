@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import "./register.css";
 import { Place, Cancel } from "@mui/icons-material";
 // import CancelIcon from '@mui/icons-material/Cancel';
-import axios from "axios";
+import { axiosInstance } from "./config";
 
 function Register({ setShowRegistration }) {
   const [success, setSuccess] = useState(false);
@@ -20,7 +20,7 @@ function Register({ setShowRegistration }) {
     };
 
     try {
-      await axios.post("/users/register", newUser);
+      await axiosInstance.post("/users/register", newUser);
       setFail(false);
       setSuccess(true);
     } catch (error) {
