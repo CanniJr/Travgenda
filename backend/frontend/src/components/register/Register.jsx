@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import "./register.css";
 import { Place, Cancel } from "@mui/icons-material";
 // import CancelIcon from '@mui/icons-material/Cancel';
-import { axiosInstance } from "./config";
+import { axiosInstance } from "../../config";
 
 function Register({ setShowRegistration }) {
   const [success, setSuccess] = useState(false);
