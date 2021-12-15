@@ -21,8 +21,8 @@ function App() {
   const [showRegistration, setShowRegistration] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [viewport, setViewport] = useState({
-    width: "100",
-    height: "100",
+    width: "100vw",
+    height: "100vh",
     latitude: 40.73061,
     longitude: -73.935242, //Default city = NYC
     zoom: 11,
