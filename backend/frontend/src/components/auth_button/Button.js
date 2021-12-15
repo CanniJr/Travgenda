@@ -1,3 +1,4 @@
+// Authentication buttons
 const Button = ({
   currentUser,
   handleLogout,

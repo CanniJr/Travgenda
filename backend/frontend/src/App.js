@@ -86,6 +86,7 @@ function App() {
   return (
     <div className="app">
       <ReactMapGL
+        className={showLogin || showRegistration ? "map_login" : "map"}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
         {...viewport}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
