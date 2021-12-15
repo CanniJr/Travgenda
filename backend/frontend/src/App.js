@@ -7,6 +7,7 @@ import * as timeago from "timeago.js";
 import { axiosInstance } from "./config";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
+import Button from "./components/auth_button/Button";
 import "./App.css";
 
 function App() {
@@ -182,32 +183,12 @@ function App() {
             </div>
           </Popup>
         )}
-        {currentUser ? (
-          <button onClick={handleLogout} className="button logout">
-            Log Out
-          </button>
-        ) : (
-          <div className="buttons">
-            <button
-              className="button login"
-              onClick={() => {
-                setShowLogin((prevState) => !prevState);
-                setShowRegistration(false);
-              }}
-            >
-              Log In
-            </button>
-            <button
-              className="button register"
-              onClick={() => {
-                setShowRegistration((prevState) => !prevState);
-                setShowLogin(false);
-              }}
-            >
-              Register
-            </button>
-          </div>
-        )}
+        <Button
+          currentUser={currentUser}
+          handleLogout={handleLogout}
+          setShowLogin={setShowLogin}
+          setShowRegistration={setShowRegistration}
+        />
         {showRegistration && (
           <Register setShowRegistration={setShowRegistration} />
         )}
