@@ -6,13 +6,13 @@ const Button = ({
   setShowRegistration,
 }) => {
   return (
-    <>
+    <div className="buttons">
       {currentUser ? (
         <button onClick={handleLogout} className="button logout">
           Log Out
         </button>
       ) : (
-        <div className="buttons">
+        <>
           <button
             className="button login"
             onClick={() => {
@@ -31,9 +31,9 @@ const Button = ({
           >
             Register
           </button>
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
 
