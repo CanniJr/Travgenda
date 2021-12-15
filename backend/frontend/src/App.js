@@ -96,6 +96,7 @@ function App() {
         {pins.map((pin) => (
           <>
             <Marker
+              key={pin._id}
               latitude={pin.lat}
               longitude={pin.long}
               offsetLeft={-viewport.zoom * (3 / 2)}
@@ -103,7 +104,8 @@ function App() {
             >
               <PlaceIcon
                 style={{
-                  fontSize: viewport.zoom * 3,
+                  fontSize:
+                    pin.username === currentUser ? viewport.zoom * 3 : "medium",
                   color: pin.username === currentUser ? "red" : "gray",
                   cursor: "pointer",
                 }}
