@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 import PlaceIcon from "@mui/icons-material/Place";
 import Star from "@mui/icons-material/Star";
 import * as timeago from "timeago.js";

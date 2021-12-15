@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./login.css";
 import { Place, Cancel } from "@mui/icons-material";
-import { axiosInstance } from "./config";
+import { axiosInstance } from "../../config";
 
 function Login({ setShowLogin, setCurrentUser, myStorage }) {
   const [fail, setFail] = useState(false);
