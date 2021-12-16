@@ -1,5 +1,6 @@
 import * as timeago from "timeago.js";
 import Star from "@mui/icons-material/Star";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Card = ({ pin, currentUser }) => {
   const { title, description, rating, username, createdAt } = pin;
@@ -23,6 +24,12 @@ const Card = ({ pin, currentUser }) => {
         Created by {currentUser === username ? <b>You!</b> : <b>{username}</b>}
       </span>
       <p>{timeago.format(createdAt)}</p>
+      {currentUser === username ? (
+        <div className="card__edit">
+          <DeleteIcon />
+          <p>edit</p>
+        </div>
+      ) : null}
     </div>
   );
 };

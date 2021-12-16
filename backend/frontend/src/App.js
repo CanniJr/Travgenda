@@ -125,7 +125,7 @@ function App() {
                 onClose={() => setMarkerID(null)}
                 anchor="left"
               >
-                <Card key={pin._id} currentUser={currentUser} pin={pin} />
+                <Card currentUser={currentUser} pin={pin} />
               </Popup>
             )}
           </div>
