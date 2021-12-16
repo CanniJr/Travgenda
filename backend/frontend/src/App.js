@@ -8,7 +8,7 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Button from "./components/auth_button/Button";
 import "./App.css";
-import Form from "./components/newPin_form/form";
+import Form from "./components/popup/popup_form";
 
 function App() {
   const myStorage = window.localStorage;
@@ -101,6 +101,8 @@ function App() {
         {pins.map((pin) => (
           <div key={pin._id}>
             <Marker
+              className="marker"
+              style={{ zIndex: -1 }}
               latitude={pin.lat}
               longitude={pin.long}
               offsetLeft={-viewport.zoom * (3 / 2)}
