@@ -12,7 +12,11 @@ const Card = ({ pin, currentUser }) => {
       <p className="card__review">{description}</p>
       <label>Rating</label>
       <div className="card__ratings">
-        {Array(rating).fill(<Star className="star" />)}
+        {Array(rating)
+          .fill()
+          .map((_, i) => (
+            <Star key={i} className="star" />
+          ))}
       </div>
       <label>Description</label>
       <span className="card__username">

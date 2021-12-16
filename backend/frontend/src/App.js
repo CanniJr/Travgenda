@@ -62,13 +62,16 @@ function App() {
   };
 
   const markerClickHandler = (id, lat, long) => {
+    setNewMarker(null);
     setMarkerID(id);
     setViewport({ ...viewport, latitude: lat, longitude: long });
   };
 
   const handleAddMarker = (e) => {
+    setMarkerID(null);
     if (currentUser) {
       const [long, lat] = e.lngLat;
+      setViewport({ ...viewport, latitude: lat, longitude: long });
       setNewMarker({
         lat,
         long,
@@ -122,7 +125,7 @@ function App() {
                 onClose={() => setMarkerID(null)}
                 anchor="left"
               >
-                <Card currentUser={currentUser} pin={pin} />
+                <Card key={pin._id} currentUser={currentUser} pin={pin} />
               </Popup>
             )}
           </div>
