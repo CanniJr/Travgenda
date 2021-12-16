@@ -27,7 +27,6 @@ function Login({ setShowLogin, setCurrentUser, myStorage }) {
       setTimeout(() => setFail(false), 5000);
     }
   };
-  //   console.log(myStorage.getItem("username"));
 
   return (
     <div className="login__container">

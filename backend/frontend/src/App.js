@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PlaceIcon from "@mui/icons-material/Place";
-import Star from "@mui/icons-material/Star";
-import * as timeago from "timeago.js";
 import { axiosInstance } from "./config";
+import Card from "./components/popup/popup_card";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Button from "./components/auth_button/Button";
 import "./App.css";
+import Form from "./components/newPin_form/form";
 
 function App() {
   const myStorage = window.localStorage;
@@ -96,9 +96,8 @@ function App() {
         // transitionDuration="150"
       >
         {pins.map((pin) => (
-          <>
+          <div key={pin._id}>
             <Marker
-              key={pin._id}
               latitude={pin.lat}
               longitude={pin.long}
               offsetLeft={-viewport.zoom * (3 / 2)}
@@ -123,29 +122,10 @@ function App() {
                 onClose={() => setMarkerID(null)}
                 anchor="left"
               >
-                <div className="card">
-                  <label>Title</label>
-                  <h4 className="card__place">{pin.title}</h4>
-                  <label>Description</label>
-                  <p className="card__review">{pin.description}</p>
-                  <label>Rating</label>
-                  <div className="card__ratings">
-                    {/* {Array.from(new Array(Math.floor(pin.rating))).map(
-                      (star) => (
-                        <Star />
-                      )
-                    )} */}
-                    {Array(pin.rating).fill(<Star className="star" />)}
-                  </div>
-                  <label>Description</label>
-                  <span className="card__username">
-                    Created by <b>{pin.username}</b>
-                  </span>
-                  <span>{timeago.format(pin.createdAt)}</span>
-                </div>
+                <Card currentUser={currentUser} pin={pin} />
               </Popup>
             )}
-          </>
+          </div>
         ))}
         {newMarker && (
           <Popup
@@ -157,31 +137,12 @@ function App() {
             anchor="left"
             captureDoubleClick={showRegistration || showLogin ? false : true}
           >
-            <div>
-              <form onSubmit={submitHandler}>
-                <label>Title</label>
-                <input
-                  placeholder="Write a title"
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <label>Description</label>
-                <textarea
-                  onChange={(e) => setDesc(e.target.value)}
-                  placeholder="Give us a description of this place."
-                />
-                <label>Rating</label>
-                <select onChange={(e) => setRating(e.target.value)}>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <button className="newPin__Button" type="submit">
-                  Add Pin
-                </button>
-              </form>
-            </div>
+            <Form
+              submitHandler={submitHandler}
+              setTitle={setTitle}
+              setDesc={setDesc}
+              setRating={setRating}
+            />
           </Popup>
         )}
         <Button
