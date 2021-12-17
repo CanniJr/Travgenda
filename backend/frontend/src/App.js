@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PlaceIcon from "@mui/icons-material/Place";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { axiosInstance } from "./config";
 import Card from "./components/popup/popup_card";
 import Register from "./components/register/Register";
@@ -98,6 +99,9 @@ function App() {
         doubleClickZoom={false}
         // transitionDuration="150"
       >
+        {currentUser && (
+          <AccountCircleIcon style={{ fontSize: "50px", color: "tomato" }} />
+        )}
         {pins.map((pin) => (
           <div key={pin._id}>
             <Marker
