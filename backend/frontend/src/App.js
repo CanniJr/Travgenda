@@ -118,6 +118,7 @@ function App() {
                     pin.username === currentUser ? viewport.zoom * 3 : "medium",
                   color: pin.username === currentUser ? "red" : "gray",
                   cursor: "pointer",
+                  zIndex: -1,
                 }}
                 onClick={() => markerClickHandler(pin._id, pin.lat, pin.long)}
               />
