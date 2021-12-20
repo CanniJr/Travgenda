@@ -61,4 +61,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//edit user
+router.delete("/delete", async function (req, res) {});
+
 module.exports = router;
