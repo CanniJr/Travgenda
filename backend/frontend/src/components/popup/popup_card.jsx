@@ -1,9 +1,15 @@
 import * as timeago from "timeago.js";
 import Star from "@mui/icons-material/Star";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { axiosInstance } from "../../config";
 
 const Card = ({ pin, currentUser }) => {
   const { title, description, rating, username, createdAt } = pin;
+
+  const deleteHandler = async () => {
+    const res = await axiosInstance.delete("/delete/:id");
+    console.log(res);
+  };
 
   return (
     <div className="card">
@@ -26,7 +32,7 @@ const Card = ({ pin, currentUser }) => {
       <p>{timeago.format(createdAt)}</p>
       {currentUser === username ? (
         <div className="card__edit">
-          <DeleteIcon />
+          <DeleteIcon onClick={deleteHandler} />
           <p>edit</p>
         </div>
       ) : null}

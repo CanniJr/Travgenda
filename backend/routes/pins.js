@@ -32,4 +32,8 @@ router.get("/", async (req, res) => {
   }
 });
 
+//delete pins
+router.delete("/delete/:id", async (req, res) => {
+  console.log(res);
+});
 module.exports = router;
