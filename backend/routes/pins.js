@@ -33,7 +33,12 @@ router.get("/", async (req, res) => {
 });
 
 //delete pins
-router.delete("/delete/:id", async (req, res) => {
-  console.log(res);
+router.delete("/:id", async (req, res) => {
+  try {
+    Pin.deleteOne({ _id: req.params.id });
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 module.exports = router;
