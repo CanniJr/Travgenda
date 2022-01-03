@@ -32,7 +32,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-//delete pins
 router.delete("/:id", async (req, res) => {
   try {
     Pin.deleteOne({ _id: req.params.id });
