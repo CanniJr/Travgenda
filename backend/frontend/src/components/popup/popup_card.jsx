@@ -8,7 +8,7 @@ const Card = ({ pin, currentUser }) => {
 
   const deleteHandler = async () => {
     const res = await axiosInstance.delete("/delete/:id");
-    console.log(res);
+    console.log(res)
   };
 
   return (
